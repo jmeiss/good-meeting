@@ -9,17 +9,17 @@ class User < ActiveRecord::Base
   # attr_accessible :title, :body
 
 
-  def gcal_events
-    require 'rubygems'
-    require 'google_calendar'
-  end
-
-  def self.find_for_open_id access_token, signed_in_resource=nil
-    data = access_token.info
-    if user = User.where(:email => data['email']).first
+  def self.find_for_google_oauth2(access_token, signed_in_resource=nil)
+    data = access_token.extra.raw_info
+    raise access_token.extra.inspect
+    if user = self.find_by_email(data.email)
       user
-    else
-      User.create! :email => data['email'], :password => Devise.friendly_token[0, 20]
+    else # Create a user with a stub password. 
+      self.create!(:email => data.email, :password => Devise.friendly_token[0,20]) 
     end
   end
+
+  def gcal_events
+  end
+
 end

@@ -1,4 +1,4 @@
-require 'openid/store/filesystem'
+require 'omniauth-google-oauth2'
 
 # Use this hook to configure devise mailer, warden hooks and so forth.
 # Many of these configuration options can be set straight in your model.
@@ -8,7 +8,14 @@ Devise.setup do |config|
   # note that it will be overwritten if you use your own mailer class with default "from" parameter.
   config.mailer_sender = "jonathan@meiss.fr"
 
-  config.omniauth :open_id, :store => OpenID::Store::Filesystem.new('/tmp'), :name => 'google', :identifier => 'https://www.google.com/accounts/o8/id', :require => 'omniauth-openid'
+  scopes = [
+    # we need the profile scope in order to login
+    'https://www.googleapis.com/auth/userinfo.profile',
+    # this and other scopes could be added, but match them up with the
+    # features you requested in your API Console
+    'https://www.googleapis.com/auth/calendar'
+  ]
+  config.omniauth :google_oauth2, "173854277683.apps.googleusercontent.com", "eDhx3qBeZHXphqxZs/Y2F6Wn", { scope: scopes.join(' '), access_type: 'online', approval_prompt: '', client_id: 'meiss.fr' }
 
   # Configure the class responsible to send e-mails.
   # config.mailer = "Devise::Mailer"
