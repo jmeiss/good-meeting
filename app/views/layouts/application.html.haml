@@ -1,0 +1,37 @@
+!!! 5
+%html{:lang => 'en'}
+  %head
+    %meta{:charset => 'utf-8'}
+    %meta{:name => 'viewport', :content => 'width=device-width, initial-scale=1.0'}
+    %title= "#{yield(:title)} - Good Meeting" || 'Good Meeting'
+    = csrf_meta_tags
+
+    /[if lt IE 9]
+      %script{:type => 'text/javascript', :src => 'http://html5shim.googlecode.com/svn/trunk/html5.js'}
+
+    = stylesheet_link_tag 'application', :media => 'all'
+
+    %link{:href => image_path('favicon.ico'), :rel => "shortcut icon"}
+    %link{:href => "images/apple-touch-icon.png", :rel => "apple-touch-icon"}
+    %link{:href => "images/apple-touch-icon-72x72.png", :rel => "apple-touch-icon", :sizes => "72x72"}
+    %link{:href => "images/apple-touch-icon-114x114.png", :rel => "apple-touch-icon", :sizes => "114x114"}
+
+  %body{:data => {spy: 'scroll', target: '.subnav', offset: '50'}}
+    .navbar.navbar-fixed-top
+      .navbar-inner
+        .container
+          %a.btn.btn-navbar{:data => {:target => ".nav-collapse", :toggle => "collapse"}}
+            %span.icon-bar
+            %span.icon-bar
+            %span.icon-bar
+          = link_to 'Good Meeting', root_path, :class => 'brand'
+          .nav-collapse
+
+    .container
+      %header.jumbotron.subhead
+        = yield
+
+      %footer
+        %p
+
+    = javascript_include_tag 'application'

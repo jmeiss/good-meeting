@@ -1,0 +1,21 @@
+%h1= 'Sign in'
+%p.lead= 'Had a Good Meeting? Give a ROTI!'
+
+- if user_signed_in?
+  = 'SIGNED IN'
+- else
+  = link_to "sign in with google", user_omniauth_authorize_path(:google), class: 'btn btn-primary btn-large'
+
+
+/ ===============================================================================
+
+/   Be sure to have a copy of the Bootstrap stylesheet available on your
+/   application, you can get it on http://twitter.github.com/bootstrap.
+
+/   Inside your views, use the 'simple_form_for' with one of the Bootstrap form
+/   classes, '.form-horizontal', '.form-inline', '.form-search' or
+/   '.form-vertical', as the following:
+
+/     = simple_form_for(@user, :html => {:class => 'form-horizontal' }) do |form|
+
+/ ===============================================================================
