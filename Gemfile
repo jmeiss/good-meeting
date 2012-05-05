@@ -9,7 +9,6 @@ gem 'jquery-rails'
 gem 'omniauth-oauth2'
 gem 'omniauth-google-oauth2'
 gem 'simple_form', '2.0.1'
-gem 'sqlite3'
 gem 'thin'
 
 
