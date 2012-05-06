@@ -1,6 +1,6 @@
 %tr
   %td
-    %h4= event['summary']
-    %em.help-block.hint= display_time_in_words event['end']
+    = link_to event_path(gcal_id: event['id']) do
+      %h4= event['summary']
+      %em.help-block.hint= display_time_in_words event['end']
   %td= '?/5'
-  %td= link_to 'Ask 4 ROTI', event_path(gcal_id: event['id']), class: 'btn btn-primary'

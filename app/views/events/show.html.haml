@@ -13,6 +13,7 @@
           = link_to '3', '#', class: 'btn btn-large btn-primary'
           = link_to '4', '#', class: 'btn btn-large btn-primary'
           = link_to '5', '#', class: 'btn btn-large btn-primary'
+        .hint= 'You should rate to see the ROTI'
     %tr
       %td
         %h3= 'Attendees'
@@ -22,7 +23,3 @@
             %li
               %span.badge= '?'
               = attendee['displayName'] || attendee['email']
-    %tr
-      %td
-        %h3= 'Organizer'
-        = @event.organizer['displayName']
