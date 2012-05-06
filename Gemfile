@@ -3,7 +3,7 @@ source 'https://rubygems.org'
 gem 'rails', '3.2.3'
 
 gem 'devise', '2.1.0.rc'
-gem 'google_calendar', '0.2.2'
+gem 'google-api-client'
 gem 'haml', '3.1.4'
 gem 'jquery-rails'
 gem 'omniauth-oauth2'

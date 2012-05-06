@@ -5,7 +5,7 @@ class User < ActiveRecord::Base
          :rememberable, :trackable, :validatable, :omniauthable
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :email, :password, :password_confirmation, :remember_me
+  attr_accessible :email, :password, :password_confirmation, :remember_me, :google_token
   # attr_accessible :title, :body
 
 
@@ -15,11 +15,8 @@ class User < ActiveRecord::Base
     if user = self.find_by_email(data.email)
       user
     else # Create a user with a stub password.
-      self.create!(:email => data.email, :password => Devise.friendly_token[0,20]) 
+      self.create! :email => data.email, :google_token => access_token[:credentials][:token], :password => Devise.friendly_token[0,20]
     end
-  end
-
-  def gcal_events
   end
 
 end

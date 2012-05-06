@@ -25,6 +25,7 @@ ActiveRecord::Schema.define(:version => 20120505184356) do
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
     t.string   "authentication_token"
+    t.string   "google_token"
     t.datetime "created_at",                             :null => false
     t.datetime "updated_at",                             :null => false
   end
