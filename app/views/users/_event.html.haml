@@ -1,7 +1,7 @@
 %tr
   %td
     - if datetime = event['start']['dateTime']
-      = l datetime.to_time, format: :short
+      = time_ago_in_words datetime.to_time
   %td= event['summary']
   %td= 'Ask for a ROTI'
   %td= 'Rate to see the ROTI'

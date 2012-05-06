@@ -13,9 +13,8 @@ class UsersController < ApplicationController
     service = client.discovered_api('calendar', 'v3')
     parameters = {
       'calendarId'    => 'primary',
-      # 'orderBy'       => 'startTime',
       'singleEvents'  => 'true',
-      'timeMin'       => (Time.zone.now-14.days).iso8601.to_s,
+      'timeMin'       => (Time.zone.now-3.days).iso8601.to_s,
       'timeMax'       => Time.zone.now.iso8601.to_s
     }
     result = client.execute(api_method: service.events.list, parameters: parameters)
