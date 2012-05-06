@@ -1,22 +1,26 @@
+require 'google/api_client'
+
 class UsersController < ApplicationController
   
-  require 'google/api_client'
+  before_filter :authenticate_user!
 
   def my_account
-    return unless current_user
-
     client = Google::APIClient.new
     client.authorization.client_id = current_user.google_token
-
     client.authorization.scope = 'https://www.googleapis.com/auth/calendar'
     client.authorization.access_token = current_user.google_token
 
     service = client.discovered_api('calendar', 'v3')
-    result = client.execute(:api_method => service.calendar_list.list)
+    parameters = {
+      'calendarId'    => 'primary',
+      # 'orderBy'       => 'startTime',
+      'singleEvents'  => 'true',
+      'timeMin'       => (Time.zone.now-14.days).iso8601.to_s,
+      'timeMax'       => Time.zone.now.iso8601.to_s
+    }
+    result = client.execute(api_method: service.events.list, parameters: parameters)
 
-    result.data.items.each do |calendar|
-      return @calendar = calendar if calendar['id'] == current_user.email
-    end
+    @events = result.data.items
   end
 
 end
