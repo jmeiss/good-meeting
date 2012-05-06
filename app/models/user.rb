@@ -32,7 +32,8 @@ class User < ActiveRecord::Base
       'timeMin'       => (Time.zone.now-3.days).iso8601.to_s,
       'timeMax'       => Time.zone.now.iso8601.to_s
     }
-    result = client.execute(api_method: service.events.list, parameters: parameters)
+    result = client.execute api_method: service.events.list, parameters: parameters
+    p result.data
     events = result.data.items
 
     events.sort_by!{|e| (e['end']['dateTime'] || e['end']['date'])}.reverse!
