@@ -5,7 +5,7 @@ class User < ActiveRecord::Base
 
   attr_accessible :email, :password, :password_confirmation, :remember_me, :google_token
 
-  has_many :rates, dependent: :destroy
+  has_many :rates, dependent: :delete_all
   
 
   def self.find_for_google_oauth2(access_token, signed_in_resource=nil)
@@ -20,9 +20,6 @@ class User < ActiveRecord::Base
 
   def gcal_events
     client = Google::APIClient.new
-    client.authorization.client_id    = '173854277683-mv2pnt4q4pattf8v1l2rfl95rbum5rtm.apps.googleusercontent.com'
-    client.authorization.client_secret= '842hWQu4jCdCgrH44CqK5y4n'
-    client.authorization.scope        = 'https://www.googleapis.com/auth/calendar'
     client.authorization.access_token = self.google_token
 
     service = client.discovered_api('calendar', 'v3')
@@ -33,7 +30,8 @@ class User < ActiveRecord::Base
       'timeMin'       => (Time.zone.now-3.days).iso8601.to_s,
       'timeMax'       => Time.zone.now.iso8601.to_s
     }
-    result = client.execute api_method: service.events.list, parameters: parameters
+
+    result = client.execute api_method: service.events.list, parameters: parameters, headers: {'Content-Type' => 'application/json'}
     p "============================ result.data"
     p result.data
     p "============================ result.data.items"
