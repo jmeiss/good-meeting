@@ -1,13 +1,17 @@
-- title 'My Meetings'
+- title 'Your Last Meetings'
 
-%h1= 'My Meetings'
+.page-header
+  %h1= 'Your Last Meetings'
 
-%table.table
-  %thead
-    %tr
-      %th.span1= 'Ended'
-      %th.span2= 'Meeting'
-      %th.span2= 'Send invitations'
-      %th.span1= 'ROTI'
-  %tbody
-    = render partial: 'event', collection: @events
+- if @events.count.zero?
+  %pre= "You have no event for last 3 days. Enjoy your holidays!"
+- else
+  %table.table
+    %thead
+      %tr
+        %th.span1= 'Ended'
+        %th.span2= 'Meeting'
+        %th.span2= 'Send invitations'
+        %th.span1= 'ROTI'
+    %tbody
+      = render partial: 'event', collection: @events
