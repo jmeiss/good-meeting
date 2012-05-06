@@ -1,0 +1,28 @@
+- title @event.summary
+
+%p.lead= @event.description
+
+%table.table.table-striped
+  %tbody
+    %tr
+      %td
+        %h3= 'ROTI'
+        .btn-toolbar.pagination-centered
+          = link_to '1', '#', class: 'btn btn-large btn-primary'
+          = link_to '2', '#', class: 'btn btn-large btn-primary'
+          = link_to '3', '#', class: 'btn btn-large btn-primary'
+          = link_to '4', '#', class: 'btn btn-large btn-primary'
+          = link_to '5', '#', class: 'btn btn-large btn-primary'
+    %tr
+      %td
+        %h3= 'Attendees'
+        %ul.unstyled
+          - @event.attendees.each do |attendee|
+            - next if attendee['resource']
+            %li
+              %span.badge= '?'
+              = attendee['displayName'] || attendee['email']
+    %tr
+      %td
+        %h3= 'Organizer'
+        = @event.organizer['displayName']

@@ -24,10 +24,9 @@
             %span.icon-bar
             %span.icon-bar
             %span.icon-bar
-          = link_to 'Good Meeting', root_path, :class => 'brand'
+          = link_to yield(:title), root_path, :class => 'brand'
           .nav-collapse
             %ul.nav.pull-right
-              %li= 'test'
               - if user_signed_in?
                 %li= link_to 'Sign out', destroy_user_session_path, :method => :delete
 

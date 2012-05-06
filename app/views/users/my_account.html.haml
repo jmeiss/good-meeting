@@ -1,19 +1,18 @@
-- title 'Your Last Meetings'
-
-.page-header
-  %h1= 'Your Last Meetings'
+- title 'Last Meetings'
 
 - if @events.count.zero?
   .alert.alert-block
     %h4.alert-heading= 'No Meeting'
     = "You had no meeting during last 3 days. Enjoy your holidays!"
 - else
-  %table.table
+  %table.table.table-striped
     %thead
       %tr
-        %th.span1= 'Ended'
-        %th.span2= 'Meeting'
-        %th.span2= 'Send invitations'
-        %th.span1= 'ROTI'
+        %th
+          %h3= 'Subject'
+        %th
+          %h3= 'ROTI'
+        %th
+          %h3= 'Send invitations'
     %tbody
       = render partial: 'event', collection: @events

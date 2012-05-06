@@ -1,7 +1,6 @@
 %tr
   %td
-    - if datetime = event['end']['dateTime']
-      = time_ago_in_words datetime.to_time
-  %td= event['summary']
-  %td= 'Ask for a ROTI'
-  %td= 'Rate to see the ROTI'
+    %h4= event['summary']
+    %em.help-block.hint= display_time_in_words event['end']
+  %td= '?/5'
+  %td= link_to 'Ask 4 ROTI', event_path(gcal_id: event['id']), class: 'btn btn-primary'
