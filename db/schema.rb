@@ -16,6 +16,7 @@ ActiveRecord::Schema.define(:version => 20120506161723) do
   create_table "rates", :force => true do |t|
     t.string  "gcal_id"
     t.integer "mark"
+    t.integer "user_id"
   end
 
   create_table "users", :force => true do |t|
