@@ -1,13 +1,14 @@
-- title @event.summary
+- title 'Good Meetings'
 
+%h1= @event.summary
 %p.lead= @event.description
 
 %table.table.table-striped
   %tbody
     %tr
       %td
-        %h3= 'ROTI'
         - if @current_user_rate.count.zero?
+          %h3= 'Your ROTI'
           .btn-toolbar.pagination-centered
             - (1..5).each do |mark|
               = simple_form_for @rate do |f|

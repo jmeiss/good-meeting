@@ -27,4 +27,7 @@ body { padding-top: 90px; }
 
 .unstyled li {
   padding: 3px 0;
+  span.badge {
+    margin-right: 10px;
+  }
 }

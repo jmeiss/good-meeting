@@ -10,11 +10,7 @@ class Event
     client.authorization.access_token = google_token
 
     service = client.discovered_api('calendar', 'v3')
-    parameters = {
-      'calendarId'    => 'primary',
-      'eventId'       => gcal_id
-    }
-    result = client.execute(api_method: service.events.get, parameters: parameters)
+    result = client.execute api_method: service.events.get, parameters: {'calendarId' => 'primary', 'eventId' => gcal_id}
 
     result.data
   end
