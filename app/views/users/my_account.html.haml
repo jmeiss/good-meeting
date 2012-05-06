@@ -4,7 +4,9 @@
   %h1= 'Your Last Meetings'
 
 - if @events.count.zero?
-  %pre= "You have no event for last 3 days. Enjoy your holidays!"
+  .alert.alert-block
+    %h4.alert-heading= 'No Meeting'
+    = "You had no meeting during last 3 days. Enjoy your holidays!"
 - else
   %table.table
     %thead
