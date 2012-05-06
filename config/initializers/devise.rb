@@ -9,13 +9,12 @@ Devise.setup do |config|
   config.mailer_sender = "jonathan@meiss.fr"
 
   scopes = [
-    # we need the profile scope in order to login
+    'userinfo.email',
+    'userinfo.profile',
     'https://www.googleapis.com/auth/userinfo.profile',
-    # this and other scopes could be added, but match them up with the
-    # features you requested in your API Console
     'https://www.googleapis.com/auth/calendar'
   ]
-  config.omniauth :google_oauth2, "173854277683.apps.googleusercontent.com", "eDhx3qBeZHXphqxZs/Y2F6Wn", { scope: scopes.join(' '), access_type: 'online', approval_prompt: '', client_id: 'meiss.fr' }
+  config.omniauth :google_oauth2, "173854277683-mv2pnt4q4pattf8v1l2rfl95rbum5rtm.apps.googleusercontent.com", "D3QNfQKX0O20yCaiQVA_EB_O", { scope: scopes.join(','), access_type: 'online', approval_prompt: '', client_id: 'meiss.fr' }
 
   # Configure the class responsible to send e-mails.
   # config.mailer = "Devise::Mailer"
