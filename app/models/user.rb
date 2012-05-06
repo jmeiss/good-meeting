@@ -33,8 +33,6 @@ class User < ActiveRecord::Base
       'timeMax'       => Time.zone.now.iso8601.to_s
     }
     result = client.execute(api_method: service.events.list, parameters: parameters)
-    p result
-    p result.data
     p result.data.items
     events = result.data.items
 
