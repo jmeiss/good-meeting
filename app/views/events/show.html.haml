@@ -7,13 +7,16 @@
     %tr
       %td
         %h3= 'ROTI'
-        .btn-toolbar.pagination-centered
-          = link_to '1', '#', class: 'btn btn-large btn-primary'
-          = link_to '2', '#', class: 'btn btn-large btn-primary'
-          = link_to '3', '#', class: 'btn btn-large btn-primary'
-          = link_to '4', '#', class: 'btn btn-large btn-primary'
-          = link_to '5', '#', class: 'btn btn-large btn-primary'
-        .hint= 'You should rate to see the ROTI'
+        - if @current_user_rate.count.zero?
+          .btn-toolbar.pagination-centered
+            - (1..5).each do |mark|
+              = simple_form_for @rate do |f|
+                = f.input :gcal_id, as: :hidden, input_html: { value: @event.id }
+                = f.input :mark, as: :hidden, input_html: { value: mark }
+                = f.button :submit, mark, class: 'btn-large btn-primary'
+        - else
+          %h1.align-center= "#{@roti} / 5"
+
     %tr
       %td
         %h3= 'Attendees'
@@ -21,5 +24,8 @@
           - @event.attendees.each do |attendee|
             - next if attendee['resource']
             %li
-              %span.badge= '?'
+              - rate = Rate.for_email_and_gcal_id attendee['email'], @event.id
+              = label_mark rate, @current_user_rate
               = attendee['displayName'] || attendee['email']
+        - if @current_user_rate.count.zero?
+          .hint= 'You should rate to see the ROTI'

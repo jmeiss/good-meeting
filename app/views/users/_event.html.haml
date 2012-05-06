@@ -1,6 +1,6 @@
 %tr
-  %td
+  %td.vertical-align
     = link_to event_path(gcal_id: event['id']) do
       %h4= event['summary']
       %em.help-block.hint= display_time_in_words event['end']
-  %td= '?/5'
+  %td.vertical-align= "#{Rate.roti_for_gcal_id(event['id'])} / 5"

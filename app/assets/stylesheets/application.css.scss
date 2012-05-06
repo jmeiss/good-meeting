@@ -15,6 +15,16 @@ body { padding-top: 90px; }
   margin: 0;
 }
 
-.table tr td {
-  vertical-align: middle;
+.vertical-align { vertical-align: middle !important; }
+.align-left     { text-align: left !important; }
+.align-center   { text-align: center !important; }
+.align-right    { text-align: right !important; }
+
+
+.btn-toolbar form {
+  display: inline;
+}
+
+.unstyled li {
+  padding: 3px 0;
 }

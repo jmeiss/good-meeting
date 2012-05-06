@@ -5,7 +5,7 @@ class User < ActiveRecord::Base
 
   attr_accessible :email, :password, :password_confirmation, :remember_me, :google_token
 
-  has_many :rates
+  has_many :rates, dependent: :destroy
   
 
   def self.find_for_google_oauth2(access_token, signed_in_resource=nil)
@@ -33,7 +33,6 @@ class User < ActiveRecord::Base
       'timeMax'       => Time.zone.now.iso8601.to_s
     }
     result = client.execute(api_method: service.events.list, parameters: parameters)
-    p result.data.items
     events = result.data.items
 
     events.sort_by!{|e| (e['end']['dateTime'] || e['end']['date'])}.reverse!

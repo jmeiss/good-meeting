@@ -8,6 +8,8 @@ GoodMeeting::Application.routes.draw do
 
   match 'events/:gcal_id' => 'events#show', as: 'event'
 
+  resources :rates, only: [:create]
+
   root :to => 'pages#index'
 
 end
