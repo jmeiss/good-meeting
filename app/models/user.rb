@@ -32,7 +32,8 @@ class User < ActiveRecord::Base
     }
 
     result = client.execute api_method: service.events.list, parameters: parameters, headers: {'Content-Type' => 'application/json'}
-    events = result.data.items
+    data = result.data
+    events = data.items
 
     events.sort_by!{|e| (e['end']['dateTime'] || e['end']['date'])}.reverse!
   end
