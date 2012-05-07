@@ -31,8 +31,8 @@ class User < ActiveRecord::Base
       'timeMax'       => Time.zone.now.iso8601.to_s
     }
 
-    result = client.execute api_method: service.events.list, parameters: parameters, headers: {'Content-Type' => 'application/json'}
-    raise result.data.inspect
+    result = client.execute api_method: service.events.list, parameters: parameters
+    raise result.data.items.inspect
     events = result.data.items
 
     events.sort_by!{|e| (e['end']['dateTime'] || e['end']['date'])}.reverse!
