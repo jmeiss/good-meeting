@@ -24,14 +24,14 @@ class User < ActiveRecord::Base
 
     service = client.discovered_api('calendar', 'v3')
     parameters = {
-      'calendarId'    => 'primary',
-      'orderBy'       => 'startTime',
-      'singleEvents'  => 'true',
-      'timeMin'       => (Time.zone.now-3.days).iso8601.to_s,
-      'timeMax'       => Time.zone.now.iso8601.to_s
+      'calendarId'    => 'primary'#,
+      # 'orderBy'       => 'startTime',
+      # 'singleEvents'  => 'true',
+      # 'timeMin'       => (Time.zone.now-3.days).iso8601.to_s,
+      # 'timeMax'       => Time.zone.now.iso8601.to_s
     }
 
-    result = result = client.execute(api_method: service.events.list, parameters: parameters)
+    result = client.execute api_method: service.events.list, parameters: parameters
 
     p "=================== result.data"
     p result.data
