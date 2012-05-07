@@ -1,3 +1,5 @@
+require 'google/api_client'
+
 class Event
 
   attr_accessor :gcal_id

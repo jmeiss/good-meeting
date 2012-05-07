@@ -1,3 +1,5 @@
+require 'google/api_client'
+
 class User < ActiveRecord::Base
 
   devise :database_authenticatable, :registerable, :recoverable, 
