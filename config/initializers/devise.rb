@@ -12,7 +12,7 @@ Devise.setup do |config|
     'https://www.googleapis.com/auth/userinfo.email',
     'https://www.googleapis.com/auth/calendar'
   ]
-  config.omniauth :google_oauth2, "173854277683-mv2pnt4q4pattf8v1l2rfl95rbum5rtm.apps.googleusercontent.com", "842hWQu4jCdCgrH44CqK5y4n", { scope: scopes.join(' '), access_type: 'offline' }
+  config.omniauth :google_oauth2, "173854277683-mv2pnt4q4pattf8v1l2rfl95rbum5rtm.apps.googleusercontent.com", "842hWQu4jCdCgrH44CqK5y4n", { scope: scopes.join(','), access_type: 'online', approval_prompt: '', client_id: 'meiss.fr' }
 
   # Configure the class responsible to send e-mails.
   # config.mailer = "Devise::Mailer"
