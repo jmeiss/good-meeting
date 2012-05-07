@@ -2,13 +2,13 @@
   background: none;
 }
 
-@import "bootswatch/superhero/variables";
+// @import "bootswatch/superhero/variables";
 @import 'bootstrap';
 
 body { padding-top: 90px; }
 
 @import "bootstrap-responsive";
-@import "bootswatch/superhero/bootswatch";
+// @import "bootswatch/superhero/bootswatch";
 
 .hint {
   font-size: 12px;
