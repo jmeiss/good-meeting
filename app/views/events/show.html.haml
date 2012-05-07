@@ -23,7 +23,7 @@
         %h3= 'Attendees'
         %ul.unstyled
           - @event.attendees.each do |attendee|
-            - next if attendee['resource']
+            - next if attendee['email'].include?("resource.calendar.google.com")
             %li
               - rate = Rate.for_email_and_gcal_id attendee['email'], @event.id
               = label_mark rate, @current_user_rate

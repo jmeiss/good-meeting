@@ -15,7 +15,6 @@ class Event
       'eventId'     => gcal_id
     }
     result = client.execute api_method: service.events.get, parameters: parameters
-
     result.data
   end
 
