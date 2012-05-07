@@ -4,7 +4,7 @@ class UsersController < ApplicationController
 
   def my_account
     client = Google::APIClient.new
-    client.authorization.access_token = self.google_token
+    client.authorization.access_token = current_user.google_token
 
     service = client.discovered_api('calendar', 'v3')
     parameters = {
