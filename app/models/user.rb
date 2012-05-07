@@ -27,7 +27,6 @@ class User < ActiveRecord::Base
     service = client.discovered_api('calendar', 'v3')
     parameters = {
       'calendarId'    => 'primary',
-      'orderBy'       => 'startTime',
       'singleEvents'  => 'true',
       'timeMin'       => (Time.zone.now-3.days).iso8601.to_s,
       'timeMax'       => Time.zone.now.iso8601.to_s
@@ -36,7 +35,6 @@ class User < ActiveRecord::Base
     result = client.execute api_method: service.events.list, parameters: parameters
     
     events = result.data.items
-    events.sort_by!{|e| (e['end']['dateTime'].to_s || e['end']['date'].to_s)}.reverse!
   end
 
 end
