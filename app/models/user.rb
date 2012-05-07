@@ -22,7 +22,6 @@ class User < ActiveRecord::Base
 
   def gcal_events
     client = Google::APIClient.new
-    client.authorization.client_id = self.google_token
     client.authorization.scope = 'https://www.googleapis.com/auth/calendar'
     client.authorization.access_token = self.google_token
 
