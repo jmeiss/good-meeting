@@ -36,7 +36,7 @@ class User < ActiveRecord::Base
     result = client.execute api_method: service.events.list, parameters: parameters
     
     events = result.data.items
-    events.sort_by!{|e| (e['end']['dateTime'] || e['end']['date'])}.reverse!
+    events.sort_by!{|e| (e['end']['dateTime'].to_s || e['end']['date'].to_s)}.reverse!
   end
 
 end
