@@ -1,3 +1,5 @@
+require 'google/api_client'
+
 class User < ActiveRecord::Base
 
   devise :database_authenticatable, :registerable, :recoverable, 
@@ -20,7 +22,6 @@ class User < ActiveRecord::Base
 
   def gcal_events
     client = Google::APIClient.new
-    client.authorization.client_id = self.google_token
     client.authorization.scope = 'https://www.googleapis.com/auth/calendar'
     client.authorization.access_token = self.google_token
 
@@ -41,7 +42,7 @@ class User < ActiveRecord::Base
     p result.data.items
 
     events = result.data.items
-    events.sort_by!{|e| (e['end']['dateTime'] || e['end']['date'])}.reverse!
+    # events.sort_by!{|e| (e['end']['dateTime'] || e['end']['date'])}.reverse!
   end
 
 end

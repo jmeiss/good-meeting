@@ -1,3 +1,5 @@
+require 'google/api_client'
+
 class Event
 
   attr_accessor :gcal_id
@@ -5,6 +7,7 @@ class Event
 
   def self.for_gcal_id_and_google_token gcal_id, google_token
     client = Google::APIClient.new
+    client.authorization.scope = 'https://www.googleapis.com/auth/calendar'
     client.authorization.access_token = google_token
 
     service = client.discovered_api('calendar', 'v3')
