@@ -5,6 +5,7 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
 
     if @user.persisted?
       flash[:notice] = I18n.t('devise.omniauth_callbacks.success', :kind => 'Google')
+      @user.update_attribute :google_token, request.env['omniauth.auth'][:credentials][:token]
       sign_in_and_redirect @user, :event => :authentication
     else
       session['devise.google_data'] = request.env['omniauth.auth']
